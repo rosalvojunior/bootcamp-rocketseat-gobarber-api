@@ -3,6 +3,7 @@ import path from 'path';
 import routes from './routes';
 
 import './database';
+
 class App {
   constructor() {
     this.server = express();

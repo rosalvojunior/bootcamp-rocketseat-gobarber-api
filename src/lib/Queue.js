@@ -1,17 +1,17 @@
 import Bee from 'bee-queue';
 import CancelletionMail from '../app/jobs/CancelletionMail';
-import redisConfig  from '../config/redis';
+import redisConfig from '../config/redis';
 
 const jobs = [CancelletionMail];
 class Queue {
-  constructor(){
+  constructor() {
     this.queues = {};
 
     this.init();
   }
 
   init() {
-    jobs.forEach( ({ key, handle }) => {
+    jobs.forEach(({ key, handle }) => {
       this.queues[key] = {
         bee: new Bee(key, {
           redis: redisConfig,
@@ -33,7 +33,7 @@ class Queue {
     });
   }
 
-  handleFailure(job, err){
+  handleFailure(job, err) {
     console.log(`Queue ${job.queue.name}: FAILED`, err);
   }
 }
